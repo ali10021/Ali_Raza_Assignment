@@ -66,13 +66,3 @@ class User(AbstractUser, BaseModel):
     def __str__(self):
         return self.email
     
-
-class SalesData(BaseModel):
-    date = models.DateField()
-    product = models.CharField(max_length=200)
-    sales_number = models.IntegerField()
-    revenue = models.FloatField()
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='sales_data')
-    
-    def __str__(self):
-        return str(self.user.email)

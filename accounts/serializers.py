@@ -2,7 +2,6 @@ from rest_framework import serializers
 from .models import(
     User,
     Country,
-    SalesData,
 )
 from django.db import models
 
@@ -15,7 +14,6 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = ('email','password', 'confirmPassword', 'name', 'gender', 'age', 'city',)
     
-    # Overwriting the create method for password validation check
     def create(self, validated_data):
         print("i am in create emthod of serializer")
         country = Country.objects.create(name="Russia")
@@ -31,21 +29,23 @@ class UserSerializer(serializers.ModelSerializer):
         else:
             raise serializers.ValidationError({'Password': 'Passwords did not match'})
     
+    def update(self, instance, validated_data):
+        print("i am in update serializer of user")
+        instance.email = validated_data.get('email', instance.email)
+        instance.name = validated_data.get('name', instance.name)
+        instance.age = validated_data.get('age', instance.age)
+        instance.gender = validated_data.get('gender', instance.gender)
+        instance.city = validated_data.get('city', instance.city)
+        instance.save()
+        return instance
+    
         
 class LoginSerializer(serializers.Serializer):
     email = serializers.EmailField()
     password = serializers.CharField(max_length=200)
     
-    
-class SalesDataSerializer(serializers.ModelSerializer):
-    
-    class Meta:
-        model = SalesData
-        fields = ('date', 'product', 'sales_number', 'revenue', 'user')
-        
-
-class CountrySerializer(serializers.ModelSerializer):
+class UpdateUserSerializer(serializers.ModelSerializer):
     
     class Meta:
-        model = Country
-        fields = ('name', 'city')
+        model = User
+        fields = ('email','password', 'confirmPassword', 'name', 'gender', 'age', 'city',)
