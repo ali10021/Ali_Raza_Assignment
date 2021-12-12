@@ -1,4 +1,4 @@
-
+from accounts.permissions import CustomPermissionForSalesData
 from rest_framework.views import APIView
 from rest_framework.generics import ListAPIView, ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from sales.models import SalesData
@@ -38,34 +38,7 @@ class SalesView(RetrieveUpdateDestroyAPIView):
     queryset = SalesData.objects.all()
     serializer_class = SalesDataSerializer
     authentication_classes = (TokenAuthentication, )
-    permission_classes = [IsAuthenticated]
-
-    def get(self, request, pk):
-        sales_data = SalesData.objects.get(pk=pk)
-        if request.user.id == sales_data.user.id:
-            print("user matched")
-            response = self.serializer_class(sales_data, context={"request": request}).data
-            return Response(response)
-        else:
-            return Response({'message':"you cannot view the details or edit of another user"})
-
-    def put(self, request, pk):      
-        sales_data = SalesData.objects.get(pk=pk)
-        if request.user.id == sales_data.user.id:
-            print("user matched")
-            response = self.serializer_class(request.data, context={"request": request}).data
-            return Response(response)
-        else:
-            return Response({'message':"you cannot view the details or edit of another user"})
-        
-    def patch(self, request, pk): 
-        sales_data = SalesData.objects.get(pk=pk)
-        if request.user.id == sales_data.user.id:
-            print("user matched")
-            response = self.serializer_class(request.data, context={"request": request}).data
-            return Response(response)
-        else:
-            return Response({'message':"you cannot view the details or edit of another user"})
+    permission_classes = [IsAuthenticated,CustomPermissionForSalesData]
     
 
 class CreateSalesView(ListCreateAPIView):
@@ -73,16 +46,6 @@ class CreateSalesView(ListCreateAPIView):
     serializer_class = SalesDataSerializer
     authentication_classes = (TokenAuthentication, )
     permission_classes = [IsAuthenticated]
-    
-    def post(self, request):
-        if request.user.id == request.data['user']:
-            print("user matched")
-            serialized_data = self.serializer_class(data=request.data)
-            if serialized_data.is_valid():
-                serialized_data.save()
-            return Response(serialized_data.data)
-        else:
-            return Response({'message':"you cannot view the details or edit of another user"})
     
 class ListCountries(ListAPIView):
     queryset = Country.objects.all()

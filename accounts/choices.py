@@ -3,7 +3,7 @@ from enum import Enum
 
 class GenderEnum(Enum):
     MALE = 'Male'
-    FEMAIL = 'Femail'
+    FEMALE = 'Female'
 
     @classmethod
     def choices(cls):

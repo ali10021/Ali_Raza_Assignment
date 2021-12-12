@@ -1,0 +1,207 @@
+[
+{
+  "model": "sessions.session",
+  "pk": "rp5uap2lxt1ohu14tsozv7lvtlq3xjaq",
+  "fields": {
+    "session_data": ".eJxVjMsOwiAQRf-FtSHysAwu3fcbCDMwUjWQlHZl_HfbpAvd3nPOfYsQ16WEtec5TElchRKn3w0jPXPdQXrEem-SWl3mCeWuyIN2ObaUX7fD_TsosZetPtPFM2l03gF40smTBeBM4DWrxDw4Rg2D0ipGw4Yy2gQKs9kqtk58vvY5OLQ:1mvkZu:3qCnQkR_bKB4wz28yy05V6jO9KUohmngnFalBoN22mI",
+    "expire_date": "2021-12-24T18:25:06.482Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "sz977twzqg209hpbra44r2x7o6nuq1qs",
+  "fields": {
+    "session_data": ".eJxVjMsOwiAQRf-FtSHysAwu3fcbCDMwUjWQlHZl_HfbpAvd3nPOfYsQ16WEtec5TElchRKn3w0jPXPdQXrEem-SWl3mCeWuyIN2ObaUX7fD_TsosZetPtPFM2l03gF40smTBeBM4DWrxDw4Rg2D0ipGw4Yy2gQKs9kqtk58vvY5OLQ:1mwJfE:4rJkiVaoNJwqoHzeaXLCwCidX5HRR64A0jlerrrFdUM",
+    "expire_date": "2021-12-26T07:52:56.606Z"
+  }
+},
+{
+  "model": "accounts.country",
+  "pk": 1,
+  "fields": {
+    "created_at": "2021-12-10T18:29:15.788Z",
+    "modified_at": "2021-12-10T18:29:15.788Z",
+    "is_active": true,
+    "name": "Pakistan"
+  }
+},
+{
+  "model": "accounts.city",
+  "pk": 1,
+  "fields": {
+    "created_at": "2021-12-10T18:29:18.815Z",
+    "modified_at": "2021-12-10T18:29:18.815Z",
+    "is_active": true,
+    "country": 1,
+    "name": "Lahore"
+  }
+},
+{
+  "model": "accounts.user",
+  "fields": {
+    "password": "pbkdf2_sha256$260000$ZcRQmXv9anuPg8rQJLA24B$vbbfZ9abiFoMC/g4yN1S5mfttaw7PN7kf7I0GTF/cO0=",
+    "last_login": "2021-12-12T07:52:56.485Z",
+    "is_superuser": true,
+    "first_name": "",
+    "last_name": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2021-12-10T18:24:58.037Z",
+    "created_at": "2021-12-10T18:24:58.318Z",
+    "modified_at": "2021-12-10T18:24:58.318Z",
+    "email": "1@1.com",
+    "name": null,
+    "gender": "",
+    "age": null,
+    "city": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.user",
+  "fields": {
+    "password": "string",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "",
+    "last_name": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2021-12-10T18:29:26.773Z",
+    "created_at": "2021-12-10T18:29:26.773Z",
+    "modified_at": "2021-12-12T06:55:22.334Z",
+    "email": "user@example.com",
+    "name": "string",
+    "gender": "MALE",
+    "age": 0,
+    "city": 1,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.user",
+  "fields": {
+    "password": "pbkdf2_sha256$260000$zSixL7arjfX6MARO7qp06Y$8ccippjTkl2nIxJ5dWejbfEQZch99sM0Smm0j3a5qDs=",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "",
+    "last_name": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2021-12-10T19:31:12.927Z",
+    "created_at": "2021-12-10T19:31:12.927Z",
+    "modified_at": "2021-12-10T19:31:13.983Z",
+    "email": "user@example2.com",
+    "name": "string",
+    "gender": "MALE",
+    "age": 0,
+    "city": 1,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.user",
+  "fields": {
+    "password": "pbkdf2_sha256$260000$YUoLwiJwIWD41W6gcfMlbz$CcR4jIl15oxJ3FmQjTItnIJ0xnrsnUkJiv9DoEAX+d4=",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "",
+    "last_name": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2021-12-12T06:09:25.225Z",
+    "created_at": "2021-12-12T06:09:25.225Z",
+    "modified_at": "2021-12-12T06:09:25.915Z",
+    "email": "user2@example.com",
+    "name": "string",
+    "gender": "MALE",
+    "age": 0,
+    "city": 1,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "sales.salesdata",
+  "pk": 1,
+  "fields": {
+    "created_at": "2021-12-12T07:53:29.508Z",
+    "modified_at": "2021-12-12T07:53:29.508Z",
+    "is_active": true,
+    "date": "2021-12-12",
+    "product": "jkladsf",
+    "sales_number": 2,
+    "revenue": 8902.0,
+    "user": [
+      "user@example.com"
+    ]
+  }
+},
+{
+  "model": "authtoken.token",
+  "pk": "e62baa670d3b80a46afde383591eaa03de787692",
+  "fields": {
+    "user": [
+      "user@example.com"
+    ],
+    "created": "2021-12-10T18:29:36.256Z"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 1,
+  "fields": {
+    "action_time": "2021-12-10T18:29:15.804Z",
+    "user": [
+      "1@1.com"
+    ],
+    "content_type": [
+      "accounts",
+      "country"
+    ],
+    "object_id": "1",
+    "object_repr": "Pakistan",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 2,
+  "fields": {
+    "action_time": "2021-12-10T18:29:18.823Z",
+    "user": [
+      "1@1.com"
+    ],
+    "content_type": [
+      "accounts",
+      "city"
+    ],
+    "object_id": "1",
+    "object_repr": "Lahore",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 3,
+  "fields": {
+    "action_time": "2021-12-12T07:53:29.508Z",
+    "user": [
+      "1@1.com"
+    ],
+    "content_type": [
+      "sales",
+      "salesdata"
+    ],
+    "object_id": "1",
+    "object_repr": "user@example.com",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+}
+]
