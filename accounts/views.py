@@ -15,6 +15,8 @@ from .permissions import CustomPermission
 # Create your views here.
 
 class RegisterUserView(CreateAPIView):
+    """This api registers a user by taking the details """
+    
     queryset = User.objects.all()
     serializer_class = UserSerializer
     
@@ -33,6 +35,8 @@ class RegisterUserView(CreateAPIView):
         
         
 class LoginView(CreateAPIView):
+    """This api logs a user into the system"""
+    
     serializer_class = LoginSerializer
     
     def post(self, request):
@@ -49,7 +53,8 @@ class LoginView(CreateAPIView):
             
         
 class LogoutView(APIView):
-
+    """This api logs out a user"""
+    
     authentication_classes = (TokenAuthentication, )
     permission_classes = [IsAuthenticated]
     
@@ -59,6 +64,8 @@ class LogoutView(APIView):
         return Response({"message": "successfully logged out"})
     
 class UpdateUserData(RetrieveUpdateAPIView):
+    """This api lets the currently logged in user to view and update his/her details"""
+    
     queryset = User.objects.all()
     serializer_class = UserSerializer
     authentication_classes = (TokenAuthentication, )

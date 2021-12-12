@@ -15,6 +15,8 @@ from django.db.models import Max
 
 # Create your views here.
 class Statistics(APIView):
+    """"This api returns the stats of sales"""
+    
     authentication_classes = (TokenAuthentication, )
     permission_classes = [IsAuthenticated]
     
@@ -35,6 +37,8 @@ class Statistics(APIView):
         return Response(custom_response.getResponse())
     
 class SalesView(RetrieveUpdateDestroyAPIView):
+    """This api enables a user to view, update or delete a sales' record"""
+    
     queryset = SalesData.objects.all()
     serializer_class = SalesDataSerializer
     authentication_classes = (TokenAuthentication, )
@@ -42,12 +46,16 @@ class SalesView(RetrieveUpdateDestroyAPIView):
     
 
 class CreateSalesView(ListCreateAPIView):
+    """This api creates and lists sales' data """
+    
     queryset = SalesData.objects.all()
     serializer_class = SalesDataSerializer
     authentication_classes = (TokenAuthentication, )
     permission_classes = [IsAuthenticated]
     
 class ListCountries(ListAPIView):
+    """This api lists all countries"""
+    
     queryset = Country.objects.all()
     serializer_class = CountrySerializer
     authentication_classes = (TokenAuthentication, )
