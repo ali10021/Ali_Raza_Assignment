@@ -55,7 +55,7 @@ class LoginView(CreateAPIView):
         try:
             user = User.objects.get(email=data["email"])
             token = Token.objects.get_or_create(user=user, )
-            response["message"] = "User logged in succesfully"
+            response["user_id"] = user.id
             response["token"] = token[0].key
         except Exception as e:
             print("in exception")
