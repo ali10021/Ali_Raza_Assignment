@@ -7,11 +7,14 @@ from rest_framework import status
 # Create your tests here.
 
 class LoginApiTests(APITestCase):
-    fixtures = ['dump2.json', ]
+    fixtures = ['dump.json', ]
     
     def _login_user(self):
-        self.user = User.objects.get(email='user@example.com')
-        self.client.login(email="user@example.com", password="string")
+        self.user = User.objects.get(email='user2@example.com')
+        login = self.client.login(email="user2@example.com", password="string")
+        # now the auth header is set for all requests
+        self.client.credentials(HTTP_AUTHORIZATION="Token " + self.user.auth_token.key)
+        self.assertTrue(login)
         
     def setUp(self):
         self._login_user()
@@ -30,13 +33,13 @@ class LoginApiTests(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)    
 
     def test_get_profile(self):
-        self.client.credentials(HTTP_AUTHORIZATION='Token e62baa670d3b80a46afde383591eaa03de787692')
+        self.client.login(email="user2@example.com", password="string")
         response = self.client.get(reverse('user_update_view'))
-        self.assertEqual(response.data.get('email'), "user@example.com")
+        self.assertEqual(response.data.get('email'), "user2@example.com")
         
     def test_put_details(self):
-        client = APIClient()
-        client.credentials(HTTP_AUTHORIZATION='Token e62baa670d3b80a46afde383591eaa03de787692')
+        # client = APIClient()
+        # client.credentials(HTTP_AUTHORIZATION='Token e62baa670d3b80a46afde383591eaa03de787692')
         data_put = {
                     "email": "user@example3.com",
                     "password": "string",
@@ -46,14 +49,12 @@ class LoginApiTests(APITestCase):
                     "age": 0,
                     "city": 1
                     }
-        response = client.put(reverse('user_update_view'), data_put)
+        response = self.client.put(reverse('user_update_view'), data_put)
         self.assertEqual(response.status_code, status.HTTP_200_OK)    
         
     def test_patch_details(self):
-        client = APIClient()
-        client.credentials(HTTP_AUTHORIZATION='Token e62baa670d3b80a46afde383591eaa03de787692')
         data_patch = {
                     "gender": "MALE"   
                     }
-        response = client.patch(reverse('user_update_view'), data_patch)
+        response = self.client.patch(reverse('user_update_view'), data_patch)
         self.assertEqual(response.status_code, status.HTTP_200_OK)    

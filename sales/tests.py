@@ -8,32 +8,31 @@ from rest_framework import status
 # Create your tests here.
 
 class LoginApiTests(APITestCase):
-    fixtures = ['dump2.json', ]
+    fixtures = ['dump.json', ]
     
     def _login_user(self):
-        self.user = User.objects.get(email='user@example.com')
-        self.client.login(email="user@example.com", password="string")
+        self.user = User.objects.get(email='user2@example.com')
+        login = self.client.login(email="user2@example.com", password="string")
+        # now the auth header is set for all requests
+        self.client.credentials(HTTP_AUTHORIZATION="Token " + self.user.auth_token.key)
+        self.assertTrue(login)
         
     def setUp(self):
         self._login_user()
         
     def test_statistics_view(self):
-        self.client.credentials(HTTP_AUTHORIZATION='Token e62baa670d3b80a46afde383591eaa03de787692')
         response = self.client.get(reverse('statistics_view'))
         self.assertEqual(response.status_code, status.HTTP_200_OK)    
         
     def test_countries_view(self):
-        self.client.credentials(HTTP_AUTHORIZATION='Token e62baa670d3b80a46afde383591eaa03de787692')
         response = self.client.get(reverse('countries_view'))
         self.assertEqual(response.status_code, status.HTTP_200_OK)    
         
     def test_get_sales_view(self):
-        self.client.credentials(HTTP_AUTHORIZATION='Token e62baa670d3b80a46afde383591eaa03de787692')
         response = self.client.get(reverse('create_sales_view'))
         self.assertEqual(response.status_code, status.HTTP_200_OK)    
         
     def test_post_sales_view(self):
-        self.client.credentials(HTTP_AUTHORIZATION='Token e62baa670d3b80a46afde383591eaa03de787692')
         data_post = {
             "date": "2021-12-12",
             "product": "string",
@@ -45,13 +44,11 @@ class LoginApiTests(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)    
         
     def test_get_sales_view_id(self):
-        self.client.credentials(HTTP_AUTHORIZATION='Token e62baa670d3b80a46afde383591eaa03de787692')
         response = self.client.get(reverse('sales_view', kwargs={'pk':1}))
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         
         
     def test_put_sales_view_id(self):
-        self.client.credentials(HTTP_AUTHORIZATION='Token e62baa670d3b80a46afde383591eaa03de787692')
         data_post = {
                     "date": "2021-12-12",
                     "product": "string",
@@ -64,7 +61,6 @@ class LoginApiTests(APITestCase):
         
         
     def test_patch_sales_view_id(self):
-        self.client.credentials(HTTP_AUTHORIZATION='Token e62baa670d3b80a46afde383591eaa03de787692')
         data_post = {
                     "product": "string"
                     } 
@@ -72,6 +68,5 @@ class LoginApiTests(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)  
         
     def test_delete_sales_view_id(self):
-        self.client.credentials(HTTP_AUTHORIZATION='Token e62baa670d3b80a46afde383591eaa03de787692')  
         response = self.client.delete(reverse('sales_view',kwargs={'pk':1}))
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)    
